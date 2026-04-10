@@ -1,0 +1,9 @@
+# Placeholder for future generated files
+
+This directory will contain:
+- Generated C source files (.c)
+- Generated token recognition logs (.tokens)
+- Generated AST dumps (.ast)
+- Compiled binaries
+
+Keep this .gitkeep file to ensure the directory is tracked by git.

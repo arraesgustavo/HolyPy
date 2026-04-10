@@ -1,0 +1,10 @@
+"""
+Python dependencies for HolyPy Compiler.
+
+Install with: pip install -r requirements.txt
+"""
+
+pytest>=7.0.0
+pytest-cov>=4.0.0
+ply>=3.11
+rich>=13.0.0
