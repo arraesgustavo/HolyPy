@@ -33,7 +33,7 @@
 | Tipo       | Símbolo ‘C’ | Símbolo ‘HolyPy’ | Analisador Léxico | Token ‘C’ | Token ‘HolyPy’ |
 | ---------- | ----------- | ---------------- | ----------------- | --------- | -------------- |
 | Atribuição | =           | =                | Op. de Atribuição | T_ATR     | T_ATR          |
-| Relacional | ==          | =                | Op. Relacional    | T_EQ      | T_EQ           |
+| Relacional | ==          | ==               | Op. Relacional    | T_EQ      | T_EQ           |
 | Relacional | !=          | !=               | Op. Relacional    | T_NEQ     | T_NEQ          |
 | Relacional | >           | >                | Op. Relacional    | T_GT      | T_GT           |
 | Relacional | <           | <                | Op. Relacional    | T_LT      | T_LT           |
@@ -122,34 +122,42 @@ Abaixo estão formalizadas as expressões regulares utilizadas pelo Analisador L
 | Categoria | Token | Expressão Regular | Exemplo de Lexema |
 | :--- | :--- | :--- | :--- |
 | **Identificadores** | `T_ID` | `[A-Za-z_][A-Za-z0-9_]*` | `variavel1`, `_soma` |
-| **Literais Numéricos** | `T_NUM` | `[+-]?(0[xX][0-9A-Fa-f]+\|((([0-9]+(\.[0-9]*)?)\|(\.[0-9]+))([eE][+-]?[0-9]+)?))` | `42`, `-3.14`, `+2E10`, `0x1000` |
-| **Literal de Caractere** | `T_CHAR_LIT` | `'(\\.\|[^'\\])'` | `'a'`, `'\n'` |
-| **Literais em String** | `T_STR` | `"(\\.\|[^"\\])*"` | `"Ola"`, `"linha\n"` |
+| **Literais Numéricos** | `T_NUM` | `[+-]?(?:0[xX][0-9A-Fa-f]+|(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)(?:[eE][+-]?[0-9]+)?)` | `42`, `-3.14`, `+2E10`, `0x1000` |
+| **Literal de Caractere** | `T_CHAR_LIT` | `'(?:\\.|[^'\\])'` | `'a'`, `'\n'` |
+| **Literais em String** | `T_STR` | `"(?:\\.|[^"\\])*"` | `"Ola"`, `"linha\n"` |
 | **Comentários** | `T_COMMENT` | `#.*` | `# Isto é um comentário` |
-| **Atribuição / Igualdade** | `T_ATR` / `T_EQ` | `=` \| `==` | `=`, `==` |
-| **Operadores Relacionais** | `T_NEQ` | `!=` | `!=` |
-| **Operadores Relacionais** | `T_GT`, `T_GEQ` | `>` \| `>=` | `>`, `>=` |
-| **Operadores Relacionais** | `T_LT`, `T_LEQ` | `<` \| `<=` | `<`, `<=` |
-| **Operadores Aritméticos** | `T_PLUS`, `T_MINUS` | `\+` \| `-` | `+`, `-` |
-| **Operadores Aritméticos** | `T_MUL`, `T_DIV` | `\*` \| `/` | `*`, `/` |
-| **Operadores Aritméticos** | `T_MOD` | `mod` | `mod` |
-| **Operadores Lógicos** | `T_AND`, `T_OR`, `T_NOT` | `and` \| `or` \| `not` | `and`, `or`, `not` |
-| **Delimitadores** | `T_LPAREN`, `T_RPAREN` | `\(` \| `\)` | `(`, `)` |
-| **Delimitadores** | `T_LBRACE`, `T_RBRACE` | `\{` \| `\}` | `{`, `}` |
-| **Delimitadores** | `T_LBRACKET`, `T_RBRACKET` | `\[` \| `\]` | `[`, `]` |
-| **Símbolos / Pontuação** | `T_COLON`, `T_COMMA` | `:` \| `,` | `:`, `,` |
-| **Símbolos / Pontuação** | `T_SEMI`, `T_DOT` | `;` \| `\.` | `;`, `.` |
-| **Símbolos / Pontuação** | `T_ARROW`, `T_BANG` | `->` \| `!` | `->`, `!` |
-| **Tipos Estruturais** | `T_INT` | `i(8\|16\|32\|64)` | `i32`, `i8` |
-| **Tipos Estruturais** | `T_UINT` | `u(8\|16\|32\|64)` | `u16`, `u64` |
-| **Tipos Estruturais** | `T_FLOAT` | `f(32\|64)` | `f32`, `f64` |
-| **Tipos Estruturais** | `T_CHAR`, `T_BOOL`, `T_U0` | `char` \| `bool` \| `u0` | `char`, `u0` |
-| **Palavras Reservadas** | Fluxo e Funções | `let` \| `fn` \| `if` \| `else` \| `cycle` \| `free` \| `return` | `let`, `cycle`, `fn` |
-| **Palavras Reservadas** | I/O e Memória | `speak` \| `receive` \| `chain` \| `unchain` \| `import` \| `asm` | `speak`, `chain` |
-| **Palavras Reservadas** | Constantes Booleanas | `true` \| `false` | `true`, `false` |
+| **Atribuição / Igualdade** | `T_ATR` / `T_EQ` | `=|==` | `=`, `==` |
+| **Operadores Relacionais (!=)** | `T_NEQ` | `!=` | `!=` |
+| **Operadores Relacionais (>=, >)** | `T_GEQ`, `T_GT` | `>=|>` | `>=`, `>` |
+| **Operadores Relacionais (<=, <)** | `T_LEQ`, `T_LT` | `<=|<` | `<=`, `<` |
+| **Operadores Aritméticos (+, -)** | `T_PLUS`, `T_MINUS` | `\+|-` | `+`, `-` |
+| **Operadores Aritméticos (*, /)** | `T_MUL`, `T_DIV` | `\*|/` | `*`, `/` |
+| **Operadores Aritméticos (mod)** | `T_MOD` | `\bmod\b` | `mod` |
+| **Operadores Lógicos** | `T_AND`, `T_OR`, `T_NOT` | `\band\b|\bor\b|\bnot\b` | `and`, `or`, `not` |
+| **Delimitadores (parênteses)** | `T_LPAREN`, `T_RPAREN` | `\(|\)` | `(`, `)` |
+| **Delimitadores (chaves)** | `T_LBRACE`, `T_RBRACE` | `\{|\}` | `{`, `}` |
+| **Delimitadores (colchetes)** | `T_LBRACKET`, `T_RBRACKET` | `\[|\]` | `[`, `]` |
+| **Símbolos / Pontuação (dois-pontos, vírgula)** | `T_COLON`, `T_COMMA` | `:|,` | `:`, `,` |
+| **Símbolos / Pontuação (ponto-e-vírgula, ponto)** | `T_SEMI`, `T_DOT` | `;|\.` | `;`, `.` |
+| **Símbolos / Pontuação (seta, bang)** | `T_ARROW`, `T_BANG` | `->|!` | `->`, `!` |
+| **Tipos Estruturais (inteiros)** | `T_INT` | `i(8|16|32|64)` | `i32`, `i8` |
+| **Tipos Estruturais (unsigned)** | `T_UINT` | `u(8|16|32|64)` | `u16`, `u64` |
+| **Tipos Estruturais (float)** | `T_FLOAT` | `f(32|64)` | `f32`, `f64` |
+| **Tipos Estruturais (primitivos)** | `T_CHAR`, `T_BOOL`, `T_U0` | `char|bool|u0` | `char`, `u0` |
+| **Palavras Reservadas (fluxo e funções)** | - | `\blet\b|\bfn\b|\bif\b|\belse\b|\bcycle\b|\bfree\b|\breturn\b` | `let`, `cycle`, `fn` |
+| **Palavras Reservadas (I/O e memória)** | - | `\bspeak\b|\breceive\b|\bchain\b|\bunchain\b|\bimport\b|\basm\b` | `speak`, `chain` |
+| **Palavras Reservadas (booleanos)** | - | `\btrue\b|\bfalse\b` | `true`, `false` |
 
 
 Algumas elucidações sobre as expressões mais complexas:
+
+### Regras de Resolução Léxica (Prioridade)
+
+- **Maximal Munch:** operadores compostos devem ser reconhecidos antes dos simples. Ex.: `->`, `>=`, `<=`, `==`, `!=` devem ser testados antes de `-`, `>`, `<`, `=`, `!` para evitar tokenização incorreta.
+- **Identificadores vs Palavras Reservadas:** keywords e tipos devem ser resolvidos antes de classificar algo como `T_ID` (reconhecer `\blet\b`, `\bi32\b`, etc.) ou aplicar um mapeamento pós-captura (`lexeme -> reserved_word`) imediatamente após o casamento de `T_ID`.
+
+- **Atribuição vs Igualdade:** `=` é `T_ATR` (atribuição) e `==` é `T_EQ` (comparação de igualdade). O lexer deve aplicar maximal-munch para reconhecer `==` antes de `=`.
+- **Diretiva vs Comentário:** em HolyPy, `!` inicia uma diretiva (ex: `!embedded`) e `#` inicia um comentário de linha; não são intercambiáveis.
 
 #### T_NUM
 
