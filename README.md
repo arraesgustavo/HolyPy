@@ -52,7 +52,6 @@ HolyPy is a high-level to low-level hybrid language with Python-like syntax that
 - Floating Point: f32, f64
 - Characters: char
 - Booleans: bool
-- Void (functions)
 ```
 
 ### Operators
@@ -69,8 +68,8 @@ fn        - Function declaration
 if        - Conditional
 cycle     - Loop
 return    - Return from function
-print     - Output
-input     - Input
+speak     - Output
+receive     - Input
 ```
 
 ### Example Program
@@ -84,12 +83,12 @@ fn add(a: i32, b: i32) -> i32 {
 }
 
 fn main() -> i32 {
-    print("Enter two numbers:")
+    speak("Enter two numbers:")
     input(x)
     input(y)
     
     let sum: i32 = add(x, y)
-    print("Sum: ", sum)
+    speak("Sum: ", sum)
     
     return 0
 }
@@ -99,7 +98,7 @@ fn main() -> i32 {
 
 ## Architecture
 
-The HolyPy compiler follows a classic multi-phase architecture:
+The HolyPy compiler is designed to follow, in the future, a classic multi-phase architecture:
 
 ```
 Source (.hpy)
@@ -117,7 +116,7 @@ Output (.c) ──→ C Backend (GCC/Clang)
 Binary Executable
 ```
 
-### Compiler Phases
+### Compiler Phases (For future implementation)
 
 1. **Lexical Analysis (Lexer)**
    - Tokenizes source into a stream of tokens
@@ -143,65 +142,6 @@ See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for details.
 
 ---
 
-## Project Structure
-
-```
-HolyPy/
-├── src/                          # Compiler source
-│   ├── __init__.py
-│   ├── lexer/                    # Lexical analyzer
-│   │   ├── __init__.py
-│   │   ├── tokens.py             # Token definitions
-│   │   └── lexer.py              # Lexer implementation
-│   ├── parser/                   # Syntax analyzer
-│   │   ├── __init__.py
-│   │   └── parser.py             # Parser implementation
-│   ├── ast/                      # AST node definitions
-│   │   ├── __init__.py
-│   │   └── nodes.py              # Dataclass AST nodes
-│   ├── semantic/                 # Semantic analysis
-│   │   ├── __init__.py
-│   │   ├── analyzer.py           # Semantic analyzer
-│   │   └── symbol_table.py       # Symbol table & scopes
-│   ├── codegen/                  # Code generation
-│   │   ├── __init__.py
-│   │   └── c_generator.py        # C code generator
-│   └── runtime/                  # Runtime support
-│       └── runtime.h             # Runtime stubs
-├── examples/                     # Example .hpy programs
-│   ├── io_example.hpy            # I/O example
-│   ├── conditional_example.hpy   # Conditional example
-│   ├── loop_example.hpy          # Loop example
-│   └── expected_output/          # Expected C output
-├── tests/                        # Unit tests
-│   ├── conftest.py               # Pytest configuration
-│   ├── lexer/
-│   ├── parser/
-│   ├── semantic/
-│   └── codegen/
-├── docs/                         # Academic documentation
-│   ├── ARCHITECTURE.md           # Compiler architecture
-│   ├── regex/                    # Token regexes
-│   │   └── token_regex.md
-│   ├── automata/                 # DFA/NFA diagrams
-│   │   └── dfa_overview.md
-│   └── grammar/                  # Grammar & derivations
-│       ├── productions.md
-│       └── derivation_tree.md
-├── scripts/                      # Utility scripts
-│   ├── build.sh                  # Build generated C
-│   ├── run.sh                    # Compile & run
-│   └── clean.sh                  # Clean artifacts
-├── output/                       # Generated C files (gitignored)
-├── main.py                       # CLI entry point
-├── Makefile                      # Build targets
-├── requirements.txt              # Python dependencies
-├── .gitignore
-└── README.md                     # This file
-```
-
----
-
 ## Documentation
 
 ### Academic Requirements
@@ -212,9 +152,8 @@ HolyPy/
   - Regular expressions for each token category
   - Examples and lexical rules
 
-- **Finite Automata**: [docs/automata/dfa_overview.md](docs/automata/dfa_overview.md)
+- **Finite Automata**: [docs/automata/](docs/automata/)
   - DFAs derived from regular expressions
-  - NFA → NFA-ε → DFA conversion (Thompson's method)
   - State diagrams and descriptions
 
 - **Grammar Productions**: [docs/grammar/productions.md](docs/grammar/productions.md)
@@ -233,12 +172,7 @@ HolyPy/
 
 ### Architecture Documentation
 
-See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for:
-- Compilation pipeline overview
-- Module organization and responsibilities
-- Design patterns (Visitor, Symbol Table)
-- Type system
-- Error handling
+See [docs/ARCHITECTURE.md](docs/ARCHITECTURE.md) for future resolutions on the architecture and development.
 
 ---
 
@@ -254,9 +188,6 @@ Academic project for UNIFEI, ECOM06 course.
 - *Compilers: Principles, Techniques, and Tools* (Dragon Book), 2nd Edition
   - Aho, Sethi, Ullman
   - Chapters 1-6: Lexing, Parsing, Semantic Analysis
-  
-- *Crafting Interpreters* — https://craftinginterpreters.com
-  - Excellent for practical compiler implementation
 
 ### Tools & Frameworks
 - **PLY** (Python Lex-Yacc) — https://www.dabeaz.com/ply/

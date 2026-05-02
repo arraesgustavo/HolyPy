@@ -1,0 +1,66 @@
+Automata
+
+.
+├── T_AND ( and ).excalidraw
+├── T_AND ( and ).svg
+├── T_ARROW ( → ).excalidraw
+├── T_ARROW ( → ).svg
+├── T_ATR _ T_EQ ( = _ == ).excalidraw
+├── T_ATR _ T_EQ ( = _ == ).svg
+├── T_BANG ( ! ).excalidraw
+├── T_BANG ( ! ).svg
+├── T_CHAIN → c h a i n.excalidraw
+├── T_CHAIN → c h a i n.svg
+├── T_CHAR_LIT — Literal de caractere.excalidraw
+├── T_CHAR_LIT — Literal de caractere.svg
+├── T_COMMENT — Comentário de linha.excalidraw
+├── T_COMMENT — Comentário de linha.svg
+├── T_CYCLE → c y c l e(1).excalidraw
+├── T_CYCLE → c y c l e(1).svg
+├── T_CYCLE → c y c l e.excalidraw
+├── T_CYCLE → c y c l e.svg
+├── T_ELSE → e l s e.excalidraw
+├── T_ELSE → e l s e.svg
+├── T_FALSE → f a l s e.excalidraw
+├── T_FALSE → f a l s e.svg
+├── T_FN → f n.excalidraw
+├── T_FN → f n.svg
+├── T_FREE → f r e e.excalidraw
+├── T_FREE → f r e e.svg
+├── T_GT _ T_GEQ ( _ _ _= ).excalidraw
+├── T_GT _ T_GEQ ( _ _ _= ).svg
+├── T_ID-Identificadores.svg
+├── T_IF → i f.excalidraw
+├── T_IF → i f.svg
+├── T_IMPORT → i m p o r t(1).excalidraw
+├── T_IMPORT → i m p o r t(1).svg
+├── Tipos Estruturais.excalidraw
+├── Tipos Estruturais.svg
+├── T_LET → l e t.excalidraw
+├── T_LET → l e t.svg
+├── T_LT _ T_LEQ ( _ _ _= ).excalidraw
+├── T_LT _ T_LEQ ( _ _ _= ).svg
+├── T_MOD ( mod ).excalidraw
+├── T_MOD ( mod ).svg
+├── T_NEQ ( != ).excalidraw
+├── T_NEQ ( != ).svg
+├── T_NOT ( not ).excalidraw
+├── T_NOT ( not ).svg
+├── T_NUM — Literais Numéricos.excalidraw
+├── T_NUM — Literais Numéricos.svg
+├── T_OR ( or ).excalidraw
+├── T_OR ( or ).svg
+├── T_RECEIVE → r e c e i v e.excalidraw
+├── T_RECEIVE → r e c e i v e.svg
+├── tree.txt
+├── T_RETURN → r e t u r n.excalidraw
+├── T_SPEAK → s p e a k.excalidraw
+├── T_SPEAK → s p e a k.svg
+├── T_STR — Literal de string.excalidraw
+├── T_STR — Literal de string.svg
+├── T_TRUE → t r u e.excalidraw
+├── T_TRUE → t r u e.svg
+├── T_UNCHAIN → u n c h a i n.excalidraw
+└── T_UNCHAIN → u n c h a i n.svg
+
+1 directory, 61 files

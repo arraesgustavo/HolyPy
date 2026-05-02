@@ -1,0 +1,13 @@
+# Introdução: O Legado, a Inspiração e as Sombras por Trás do HolyPy
+
+O HolyPy nasce como um projeto acadêmico de engenharia de software focado na construção de um compilador a partir do zero. Mais do que um exercício prático de análise léxica, sintática e semântica, o próprio nome da linguagem carrega uma referência direta ao HolyC, a linguagem de programação desenvolvida por uma das figuras mais complexas e trágicas da história da computação: Terry A. Davis.
+
+Criador do TempleOS, Davis alcançou um feito técnico que beira o inacreditável: ele arquitetou, codificou e documentou um sistema operacional inteiro — incluindo seu próprio kernel, compilador, ferramentas gráficas e jogos — de forma absolutamente solitária, ao longo de mais de uma década. Do ponto de vista estritamente técnico e da paixão pela arquitetura de baixo nível, seu legado é um testamento impressionante do que a dedicação e a lógica humana são capazes de produzir.
+
+No entanto, é impossível e irresponsável falar sobre Terry Davis sem abordar a nuvem de polêmicas que o envolve. Davis não é, e não deve ser visto como, um exemplo de conduta ou um modelo a ser seguido. Durante anos, ele propagou discursos de ódio, falas preconceituosas e demonstrou comportamentos profundamente erráticos na internet, muitas vezes alienando a comunidade que tentava compreender o seu trabalho.
+
+Contudo, a lente pela qual observamos essas atitudes precisa ser ajustada pela realidade clínica de sua condição. Davis sofria de esquizofrenia severa, uma doença mental altamente debilitante que o desconectou da realidade, provocou delírios persecutórios intensos e, infelizmente, o levou a viver em situação de rua e a um fim trágico em 2018.
+
+Reconhecer a genialidade de sua engenharia não significa endossar as suas falas. Pelo contrário, exige de nós um olhar crítico e, acima de tudo, empático. A trajetória de Terry Davis nos obriga a enxergar as profundas dificuldades enfrentadas por pessoas com transtornos mentais severos, evidenciando como a genialidade e a doença podem coexistir em uma mesma mente, muitas vezes de forma destrutiva. Sua história é um lembrete cruel sobre a importância do suporte psiquiátrico e do acolhimento social — algo de que ele, tragicamente, esteve desprovido em seus piores momentos.
+
+Assim, o desenvolvimento do HolyPy homenageia o espírito inabalável do "fazer você mesmo" e a curiosidade implacável por entender como as máquinas funcionam por baixo dos panos. É um tributo à engenharia crua e à resiliência técnica, separando firmemente o fascínio pelo código das tragédias e sombras da mente do seu inspirador original.
